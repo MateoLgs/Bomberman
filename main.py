@@ -143,14 +143,34 @@ while continuer:
         # affichage de la frame
         pygame.display.flip()
 
-        # verification des conditions de victoire
-        game_over = bombe.exploser()
-        if game_over == 1:
+        if bombe.exploser() == 1:
+            Perso.hp -= 1
+        elif bombe.exploser() == 2:
+            Perso2.h -=1
+
+        if bombe2.exploser() == 1:
+            Perso.hp -= 1
+        elif bombe2.exploser() == 2:
+            Perso2.h -=1
+
+        game_over = Perso.getIsDead()
+        if game_over:
             continuer_jeu = 0
             print("game over")
+        game_over = Perso2.getIsDead()
+        if game_over:
+            continuer_jeu = 0
+            print("game over")
+
+'''
+
+        # verification des conditions de victoire
+        game_over = bombe.exploser()
+        
         game_over = bombe2.exploser()
         if game_over == 1:
             continuer_jeu = 0
             print("game over")
 
         # print(datetime.now() - debugfps)
+'''

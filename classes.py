@@ -69,9 +69,14 @@ class Perso:
         self.case_y = 1
         self.x = taille_sprite * self.case_x
         self.y = taille_sprite * self.case_y
-
         self.direction = self.droite
         self.niveau = niveau
+        # gestion de la vie
+        self.hp = 3
+        self.isDead = False
+
+    def getIsDead(self):
+        return self.isDead
 
     def deplacer(self, direction):
         """Methode de déplacement du personnage"""
@@ -130,6 +135,12 @@ class Perso2:
         self.y = taille_sprite * self.case_y
         self.direction = self.haut
         self.niveau = niveau
+        # gestion de la vie
+        self.hp = 3
+        self.isDead = False
+
+    def getIsDead(self):
+        return self.isDead
 
     def deplacer(self, direction):
         """Methode de déplacement du personnage"""
@@ -223,16 +234,16 @@ class Bomb:
                 if self.niveau.structure[self.case_y + 1][self.case_x] == "b":
                     self.niveau.detruire(self.case_y + 1, self.case_x)
 
-                # conditions de victoire (a simplifier)
+                # Renvoie 1 si touche le joueur1
                 if self.case_x == self.perso1.case_x and self.case_y - 1 <= self.perso1.case_y <= self.case_y + 1:
                     return 1
                 elif self.case_x - 1 <= self.perso1.case_x <= self.case_x + 1 and self.case_y == self.perso1.case_y:
                     return 1
-
+                # Renvoie 2 si touche le joueur2
                 if self.case_x == self.perso2.case_x and self.case_y - 1 <= self.perso2.case_y <= self.case_y + 1:
-                    return 1
+                    return 2
                 elif self.case_x - 1 <= self.perso2.case_x <= self.case_x + 1 and self.case_y == self.perso2.case_y:
-                    return 1
+                    return 2
 
             except IndexError:
                 # au cas ou la bombe est / detruit un bloc en dehors du terrain
@@ -299,16 +310,16 @@ class Bomb2:
                 if self.niveau.structure[self.case_y + 1][self.case_x] == "b":
                     self.niveau.detruire(self.case_y + 1, self.case_x)
 
-                # conditions de victoire (a simplifier)
+                # Renvoie 1 si touche le joueur1
                 if self.case_x == self.perso1.case_x and self.case_y - 1 <= self.perso1.case_y <= self.case_y + 1:
                     return 1
                 elif self.case_x - 1 <= self.perso1.case_x <= self.case_x + 1 and self.case_y == self.perso1.case_y:
                     return 1
-
+                # Renvoie 2 si touche le joueur2
                 if self.case_x == self.perso2.case_x and self.case_y - 1 <= self.perso2.case_y <= self.case_y + 1:
-                    return 1
+                    return 2
                 elif self.case_x - 1 <= self.perso2.case_x <= self.case_x + 1 and self.case_y == self.perso2.case_y:
-                    return 1
+                    return 2
             except IndexError:
                 pass
 
