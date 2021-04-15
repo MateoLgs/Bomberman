@@ -15,6 +15,8 @@ bombeJoueur2 = Bombe(screen)
 listeBombeJoueur1 = [0, 0, 0]
 listeBombeJoueur2 = [0, 0, 0]
 
+# pygame.joystick.init
+# print(pygame.joystick.Joystick.get_axis)
 
 while 1:
     for event in pygame.event.get():
