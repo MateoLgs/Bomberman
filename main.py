@@ -61,8 +61,8 @@ while continuer:
         niveau.afficher(fenetre)
 
         # création des deux avatars
-        perso = Perso(p1_droite, p1_gauche, p1_haut, p1_bas, niveau)
-        perso2 = Perso2(p2_droite, p2_gauche, p2_haut, p2_bas, niveau)
+        perso = Perso(p1_droite, p1_gauche, p1_haut, p1_bas, niveau, hp)
+        perso2 = Perso2(p2_droite, p2_gauche, p2_haut, p2_bas, niveau, hp)
         # création des deux bombes
         bombe = Bomb(image_bombe, niveau, perso, perso2)
         bombe2 = Bomb(image_bombe, niveau, perso, perso2)
@@ -146,18 +146,18 @@ while continuer:
         if bombe.exploser() == 1:
             Perso.hp -= 1
         elif bombe.exploser() == 2:
-            Perso2.h -=1
+            Perso2.hp -=1
 
         if bombe2.exploser() == 1:
             Perso.hp -= 1
         elif bombe2.exploser() == 2:
-            Perso2.h -=1
+            Perso2.hp -=1
 
-        game_over = Perso.getIsDead()
+        game_over = Perso.IsDead(Perso)
         if game_over:
             continuer_jeu = 0
             print("game over")
-        game_over = Perso2.getIsDead()
+        game_over = Perso2.IsDead(Perso)
         if game_over:
             continuer_jeu = 0
             print("game over")

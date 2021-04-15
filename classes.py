@@ -54,7 +54,7 @@ class Niveau:
 class Perso:
     """Classe permettant de créer un personage"""
 
-    def __init__(self, droite, gauche, haut, bas, niveau):
+    def __init__(self, droite, gauche, haut, bas, niveau, hp):
         # initialisation des images et gestion de la transparance
         self.droite = pygame.image.load(droite).convert()
         self.droite.set_colorkey((255, 255, 255))
@@ -73,10 +73,12 @@ class Perso:
         self.niveau = niveau
         # gestion de la vie
         self.hp = 3
-        self.isDead = False
 
-    def getIsDead(self):
-        return self.isDead
+    def IsDead(self):
+        if self.hp > 0:
+            return False
+        else:
+            return True
 
     def deplacer(self, direction):
         """Methode de déplacement du personnage"""
@@ -118,7 +120,7 @@ class Perso:
 class Perso2:
     """Classe permettant de créer le second perso à simplifier pour en utiliser qu'une"""
 
-    def __init__(self, droite, gauche, haut, bas, niveau):
+    def __init__(self, droite, gauche, haut, bas, niveau, hp):
         # initialisation des images et gestion de la transparance
         self.droite = pygame.image.load(droite).convert()
         self.droite.set_colorkey((255, 255, 255))
@@ -137,10 +139,12 @@ class Perso2:
         self.niveau = niveau
         # gestion de la vie
         self.hp = 3
-        self.isDead = False
 
-    def getIsDead(self):
-        return self.isDead
+    def IsDead(self):
+        if self.hp > 0:
+            return False
+        else:
+            return True
 
     def deplacer(self, direction):
         """Methode de déplacement du personnage"""
