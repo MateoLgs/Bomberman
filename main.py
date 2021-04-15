@@ -6,7 +6,7 @@ from constant import *
 from classes import *
 
 __name__ = "bomberman luncher"
-__author__ = "Maxime Favier"
+__author__ = "Le meilleur groupe de spe prog"
 
 # initialisation de pygame
 pygame.display.init()

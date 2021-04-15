@@ -1,8 +1,8 @@
 """Constantes du jeu"""
 
 nombre_sprite_cote = 15
-taille_sprite = 40  # en px (carré)
-cote_fenetre = nombre_sprite_cote * taille_sprite
+taille_sprite = 50  # en px (carré)
+cote_fenetre = nombre_sprite_cote * taille_sprite + taille_sprite*2
 
 titre_fenetre = "Bomberman"
 
