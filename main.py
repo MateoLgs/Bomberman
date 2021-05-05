@@ -5,7 +5,8 @@ from datetime import datetime, timedelta
 from constant import *
 from classes import *
 
-
+__name__ = "bomberman luncher"
+__author__ = "Maxime Favier"
 
 # initialisation de pygame
 pygame.display.init()
@@ -15,14 +16,14 @@ fenetre = pygame.display.set_mode((cote_fenetre, cote_fenetre))
 pygame.display.set_caption(titre_fenetre)
 
 # variable de debut/fin de la boucle infinie
-continuer = True
+continuer = 1
 
 # boucle d'actualisation de la fenetre
 while continuer:
 
     # chargement de l'accueil
-    accueil = pygame.image.load(image_accueil).convert()
-    fenetre.blit(accueil, (0, 0))
+    #accueil = pygame.image.load(image_accueil).convert()
+    #fenetre.blit(accueil, (0, 0))
 
     # rafraichissement
     pygame.display.flip()
@@ -34,9 +35,10 @@ while continuer:
     while continuer_accueil:
 
         # limitation de vittesse de la boucle
-        pygame.time.Clock().tick(30)
+        pygame.time.Clock().tick(60)
 
-        choix = 0
+        choix = "n1"
+        continuer_accueil = 0
         # evemements clavier du menu
         for event in pygame.event.get():
             # quitter le jeu
@@ -45,9 +47,6 @@ while continuer:
                 continuer_jeu = 0
                 continuer = 0
             # démarer la jeu
-            elif event.type == KEYDOWN and event.key == K_SPACE:
-                continuer_accueil = 0
-                choix = "n1"
 
     # Vérification du choix du niveau pour ne pas charger si il quitte ;)
     if choix != 0:
@@ -62,6 +61,10 @@ while continuer:
         # création des deux avatars
         perso = Perso(p1_droite, p1_gauche, p1_haut, p1_bas, niveau)
         perso2 = Perso2(p2_droite, p2_gauche, p2_haut, p2_bas, niveau)
+       
+
+      
+
         # création des deux bombes
         bombe = Bomb(image_bombe, niveau, perso, perso2)
         bombe2 = Bomb(image_bombe, niveau, perso, perso2)
@@ -70,9 +73,10 @@ while continuer:
 
     # boucle de jeu
     while continuer_jeu:
-
-        # debugfps = datetime.now()
-
+       # debugfps = datetime.now()
+        screen.fill((0, 255, 0))
+        moving_rect = pygame.Rect(300,600,200,100)
+        #pygame.draw.rect(screen,(255,0,0),moving_rect)
         # limitation de la vitesse de la boucle infinie
         pygame.time.Clock().tick(30)
         # print(pygame.time.get_ticks())
@@ -93,28 +97,73 @@ while continuer:
                     bombe.poser(perso.x, perso.y, image_bombe)
 
                 # touches de déplacement perso
-                elif event.key == K_RIGHT:
-                    perso.deplacer("droite")
+                if event.key == K_RIGHT:
+                    pressedRight1 = True
                 elif event.key == K_LEFT:
-                    perso.deplacer("gauche")
+                    pressedLeft1 = True
                 elif event.key == K_DOWN:
-                    perso.deplacer("bas")
+                    pressedDown1 = True
                 elif event.key == K_UP:
-                    perso.deplacer("haut")
+                    pressedUp1 = True
 
                 # touches de perso2
 
                 if event.key == K_e:
                     bombe2.poser(perso2.x, perso2.y, image_bombe)
                 elif event.key == K_d:
-                    perso2.deplacer("droite")
+                    pressedRight2 = True
                 elif event.key == K_q:
-                    perso2.deplacer("gauche")
+                    pressedLeft2 = True
                 elif event.key == K_s:
-                    perso2.deplacer("bas")
+                    pressedDown2 = True
                 elif event.key == K_z:
-                    perso2.deplacer("haut")
+                    pressedUp2 = True
 
+            if event.type == pygame.KEYUP:            # check for key releases
+                if event.key == K_RIGHT:
+                    pressedLeft1 = False
+                if event.key == K_LEFT:
+                    pressedRight1 = False
+                if event.key == K_DOWN:
+                    pressedDown1 = False
+                if event.key == K_UP:
+                   pressedUp1 = False
+
+                if event.key == K_d:
+                    pressedRight2 = False
+                if event.key == K_q:
+                    pressedLeft2 = False
+                if event.key == K_s:
+                    pressedDown2 = False
+                if event.key == K_z:
+                    pressedUp2 = False
+
+
+
+
+        
+
+
+
+
+        
+        if pressedLeft1 == True:
+            perso.deplacer("gauche")
+        elif pressedRight1 == True:
+            perso.deplacer("droite")
+        elif pressedDown1 == True:
+            perso.deplacer("bas")
+        elif pressedUp1 == True:
+            perso.deplacer("haut")
+
+        if pressedLeft2 == True:
+            perso2.deplacer("gauche")
+        elif pressedRight2 == True:
+            perso2.deplacer("droite")
+        elif pressedDown2 == True:
+            perso2.deplacer("bas")
+        elif pressedUp2 == True:
+            perso2.deplacer("haut")
         # définition des affichages au nouvelles positions
         # A faire => actualiser seulement ce qui a changer pour ameliorer fps
         # ≈15fps --> Intel(R) Atom(TM) x5-Z8350  CPU @ 1.44GHz (Ubuntu 16.04.4 LTS)

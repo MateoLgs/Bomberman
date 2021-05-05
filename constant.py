@@ -30,3 +30,15 @@ flamme_d = "images/explod.png"
 flamme_g = "images/explog.png"
 flamme_h = "images/exploh.png"
 flamme_b = "images/explob.png"
+
+pressedUp1 = False
+pressedDown1 = False
+pressedRight1 = False
+pressedLeft1 = False
+pressedUp2 = False
+pressedDown2 = False
+pressedRight2 = False
+pressedLeft2 = False
+
+player1Speed = 5
+player2Speed = 5 

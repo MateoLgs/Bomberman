@@ -78,35 +78,27 @@ class Perso:
 
         if direction == "droite":
             # dépassement de l'écran ?
-            if self.case_x < (nombre_sprite_cote - 1):
+
                 # destination le sol ?
-                if self.niveau.structure[self.case_y][self.case_x + 1] == "s":
-                    # déplacement d"une case
-                    self.case_x += 1
+
                     # calcul de la position en px
-                    self.x = self.case_x * taille_sprite
+            self.x +=5
             # image de la direction (a simplifier avec pygame.image.rotate())
             self.direction = self.droite
 
         if direction == "gauche":
-            if self.case_x > 0:
-                if self.niveau.structure[self.case_y][self.case_x - 1] == "s":
-                    self.case_x -= 1
-                    self.x = self.case_x * taille_sprite
+    
+            self.x -=5
             self.direction = self.gauche
 
         if direction == "haut":
-            if self.case_y > 0:
-                if self.niveau.structure[self.case_y - 1][self.case_x] == "s":
-                    self.case_y -= 1
-                    self.y = self.case_y * taille_sprite
+
+            self.y -=5
             self.direction = self.haut
 
         if direction == "bas":
-            if self.case_y < (nombre_sprite_cote - 1):
-                if self.niveau.structure[self.case_y + 1][self.case_x] == "s":
-                    self.case_y += 1
-                    self.y = self.case_y * taille_sprite
+
+            self.y +=5
             self.direction = self.bas
 
 
@@ -135,37 +127,33 @@ class Perso2:
         """Methode de déplacement du personnage"""
 
         if direction == "droite":
-            # dépassement de l'écran ?
-            if self.case_x < (nombre_sprite_cote - 1):
+                # dépassement de l'écran ?
+
                 # destination le sol ?
-                if self.niveau.structure[self.case_y][self.case_x + 1] == "s":
-                    # déplacement d"une case
-                    self.case_x += 1
+
                     # calcul de la position en px
-                    self.x = self.case_x * taille_sprite
-            # image dans la bonne direction
+            self.x += player2Speed
+            # image de la direction (a simplifier avec pygame.image.rotate())
             self.direction = self.droite
+            self.case_x = self.x/taille_sprite
 
         if direction == "gauche":
-            if self.case_x > 0:
-                if self.niveau.structure[self.case_y][self.case_x - 1] == "s":
-                    self.case_x -= 1
-                    self.x = self.case_x * taille_sprite
+            
+            self.x -= player2Speed
             self.direction = self.gauche
+            self.case_x = self.x/taille_sprite
+
 
         if direction == "haut":
-            if self.case_y > 0:
-                if self.niveau.structure[self.case_y - 1][self.case_x] == "s":
-                    self.case_y -= 1
-                    self.y = self.case_y * taille_sprite
+            self.y -= player2Speed
             self.direction = self.haut
+            self.case_y = self.y/taille_sprite
 
         if direction == "bas":
-            if self.case_y < (nombre_sprite_cote - 1):
-                if self.niveau.structure[self.case_y + 1][self.case_x] == "s":
-                    self.case_y += 1
-                    self.y = self.case_y * taille_sprite
+            self.y += player2Speed
+            self.case_x = self.x/taille_sprite
             self.direction = self.bas
+
 
 
 class Bomb:
