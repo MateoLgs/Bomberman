@@ -237,15 +237,15 @@ class Bomb2:
                 if self.niveau.structure[self.case_y + 1][self.case_x] == "b":
                     self.niveau.detruire(self.case_y + 1, self.case_x)
 
-                if self.case_x == self.perso1.case_x and self.case_y - 1 <= self.perso1.case_y <= self.case_y + 1:
-                    return 1
-                elif self.case_x - 1 <= self.perso1.case_x <= self.case_x + 1 and self.case_y == self.perso1.case_y:
-                    return 1
+                #if self.case_x == self.perso1.case_x and self.case_y - 1 <= self.perso1.case_y <= self.case_y + 1:
+                #    return 1
+                #elif self.case_x - 1 <= self.perso1.case_x <= self.case_x + 1 and self.case_y == self.perso1.case_y:
+                #    return 1
 
-                if self.case_x == self.perso2.case_x and self.case_y - 1 <= self.perso2.case_y <= self.case_y + 1:
-                    return 1
-                elif self.case_x - 1 <= self.perso2.case_x <= self.case_x + 1 and self.case_y == self.perso2.case_y:
-                    return 1
+                #if self.case_x == self.perso2.case_x and self.case_y - 1 <= self.perso2.case_y <= self.case_y + 1:
+               #     return 1
+                #elif self.case_x - 1 <= self.perso2.case_x <= self.case_x + 1 and self.case_y == self.perso2.case_y:
+                 #   return 1
             except IndexError:
                 pass
 
