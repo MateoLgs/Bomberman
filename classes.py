@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-from constant import *
+from variables import *
 from datetime import datetime, timedelta
 
 
@@ -77,34 +77,20 @@ class Perso:
         """Methode de déplacement du personnage"""
 
         if direction == "droite":
-            # dépassement de l'écran ?
-
-                # destination le sol ?
-
-                    # calcul de la position en px
             self.x +=5
-            # image de la direction (a simplifier avec pygame.image.rotate())
             self.direction = self.droite
-
         if direction == "gauche":
-    
             self.x -=5
             self.direction = self.gauche
-
         if direction == "haut":
-
             self.y -=5
             self.direction = self.haut
-
         if direction == "bas":
-
             self.y +=5
             self.direction = self.bas
 
 
 class Perso2:
-    """Classe permettant de créer le second perso à simplifier pour en utiliser qu'une"""
-
     def __init__(self, droite, gauche, haut, bas, niveau):
         # initialisation des images et gestion de la transparance
         self.droite = pygame.image.load(droite).convert()
@@ -124,30 +110,17 @@ class Perso2:
         self.niveau = niveau
 
     def deplacer(self, direction):
-        """Methode de déplacement du personnage"""
-
         if direction == "droite":
-            # dépassement de l'écran ?
-
-                # destination le sol ?
-
-                    # calcul de la position en px
             self.x +=5
-            # image de la direction (a simplifier avec pygame.image.rotate())
             self.direction = self.droite
 
         if direction == "gauche":
-    
             self.x -=5
             self.direction = self.gauche
-
         if direction == "haut":
-
             self.y -=5
             self.direction = self.haut
-
         if direction == "bas":
-
             self.y +=5
             self.direction = self.bas
 
@@ -155,7 +128,6 @@ class Perso2:
 
 
 class Bomb:
-    """Classe controllant la bombe"""
 
     def __init__(self, bomb, niveau, perso1, perso2):
         # chargement des sprites
@@ -173,7 +145,6 @@ class Bomb:
         self.explosion = 0
 
     def poser(self, x, y, bomb):
-        """pose et arme la bombe"""
         self.bomb = pygame.image.load(bomb).convert()
         self.bomb.set_colorkey((255, 255, 255))
         self.x = x
@@ -184,11 +155,8 @@ class Bomb:
         self.explosion = 0
 
     def exploser(self):
-        """Explosion de la bombe"""
 
-        # condition explosion de la bombe 3 seconde apres
         if timedelta(seconds=3) <= datetime.now() - self._time_created:
-            # change le sprite de la bombe en sprite d'explosion
             self.bomb = pygame.image.load(image_explosion).convert()
             self.bomb.set_colorkey((255, 255, 255))
             self.explosion = 1
@@ -209,16 +177,16 @@ class Bomb:
                 if self.niveau.structure[self.case_y + 1][self.case_x] == "b":
                     self.niveau.detruire(self.case_y + 1, self.case_x)
 
-                # conditions de victoire (a simplifier)
-                if self.case_x == self.perso1.case_x and self.case_y - 1 <= self.perso1.case_y <= self.case_y + 1:
-                    return 1
-                elif self.case_x - 1 <= self.perso1.case_x <= self.case_x + 1 and self.case_y == self.perso1.case_y:
-                    return 1
+                
+                #if self.case_x == self.perso1.case_x and self.case_y - 1 <= self.perso1.case_y <= self.case_y + 1:
+                    #return 1
+                #elif self.case_x - 1 <= self.perso1.case_x <= self.case_x + 1 and self.case_y == self.perso1.case_y:
+                    #return 1
 
-                if self.case_x == self.perso2.case_x and self.case_y - 1 <= self.perso2.case_y <= self.case_y + 1:
-                    return 1
-                elif self.case_x - 1 <= self.perso2.case_x <= self.case_x + 1 and self.case_y == self.perso2.case_y:
-                    return 1
+                #if self.case_x == self.perso2.case_x and self.case_y - 1 <= self.perso2.case_y <= self.case_y + 1:
+                    #return 1
+                #elif self.case_x - 1 <= self.perso2.case_x <= self.case_x + 1 and self.case_y == self.perso2.case_y:
+                    #return 1
 
             except IndexError:
                 # au cas ou la bombe est / detruit un bloc en dehors du terrain

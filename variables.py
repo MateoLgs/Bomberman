@@ -1,12 +1,9 @@
-"""Constantes du jeu"""
-
 nombre_sprite_cote = 16
-taille_sprite = 50  # en px (carré)
-cote_fenetre = nombre_sprite_cote * taille_sprite# + taille_sprite*2
+taille_sprite = 50  
+cote_fenetre = nombre_sprite_cote * taille_sprite
 
 titre_fenetre = "Bomberman"
 
-# chemin des sprites et des textures du jeu
 image_accueil = "images/ap.png"
 
 image_brick = "images/brick.png"
