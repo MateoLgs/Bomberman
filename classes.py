@@ -27,7 +27,7 @@ class Niveau:
         """définition des images du niveau"""
         brick = pygame.image.load(image_brick)
         pillar = pygame.image.load(pilier)
-        sol = pygame.image.load(image_sol)
+        sol = pygame.image.load(imageSol)
 
         num_ligne = 0
         # parcours de la double liste du terrain
@@ -154,7 +154,7 @@ class Bomb:
     def exploser(self):
 
         if timedelta(seconds=3) <= datetime.now() - self._time_created:
-            self.bomb = pygame.image.load(image_explosion).convert()
+            self.bomb = pygame.image.load(imageExplosion).convert()
             self.bomb.set_colorkey((255, 255, 255))
             self.explosion = 1
 
@@ -220,7 +220,7 @@ class Bomb2:
     def exploser(self):
 
         if timedelta(seconds=3) <= datetime.now() - self._time_created:
-            self.bomb = pygame.image.load(image_explosion).convert()
+            self.bomb = pygame.image.load(imageExplosion).convert()
             self.bomb.set_colorkey((255, 255, 255))
             self.explosion = 1
 
@@ -237,15 +237,15 @@ class Bomb2:
                 if self.niveau.structure[self.case_y + 1][self.case_x] == "b":
                     self.niveau.detruire(self.case_y + 1, self.case_x)
 
-                #if self.case_x == self.perso1.case_x and self.case_y - 1 <= self.perso1.case_y <= self.case_y + 1:
-                 #   return 1
-                #elif self.case_x - 1 <= self.perso1.case_x <= self.case_x + 1 and self.case_y == self.perso1.case_y:
-                 #   return 1
+                if self.case_x == self.perso1.case_x and self.case_y - 1 <= self.perso1.case_y <= self.case_y + 1:
+                    return 1
+                elif self.case_x - 1 <= self.perso1.case_x <= self.case_x + 1 and self.case_y == self.perso1.case_y:
+                    return 1
 
-                #if self.case_x == self.perso2.case_x and self.case_y - 1 <= self.perso2.case_y <= self.case_y + 1:
-                 #   return 1
-                #elif self.case_x - 1 <= self.perso2.case_x <= self.case_x + 1 and self.case_y == self.perso2.case_y:
-                 #   return 1
+                if self.case_x == self.perso2.case_x and self.case_y - 1 <= self.perso2.case_y <= self.case_y + 1:
+                    return 1
+                elif self.case_x - 1 <= self.perso2.case_x <= self.case_x + 1 and self.case_y == self.perso2.case_y:
+                    return 1
             except IndexError:
                 pass
 

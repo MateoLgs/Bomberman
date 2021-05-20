@@ -10,8 +10,8 @@ image_brick = "images/brick.png"
 
 pilier = "images/pillar.png"
 imageBombe = "images/bonb.png"
-image_sol = "images/sol.png"
-image_explosion = "images/explodstart.png"
+imageSol = "images/sol.png"
+imageExplosion = "images/explodstart.png"
 
 p1_droite = "images/player1d.png"
 p1_gauche = "images/player1g.png"
