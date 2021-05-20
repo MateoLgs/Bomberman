@@ -26,7 +26,7 @@ class Niveau:
     def afficher(self, fenetre):
         """définition des images du niveau"""
         brick = pygame.image.load(image_brick)
-        pillar = pygame.image.load(image_pillier)
+        pillar = pygame.image.load(pilier)
         sol = pygame.image.load(image_sol)
 
         num_ligne = 0
@@ -130,15 +130,12 @@ class Perso2:
 class Bomb:
 
     def __init__(self, bomb, niveau, perso1, perso2):
-        # chargement des sprites
         self.bomb = pygame.image.load(bomb).convert()
-        # place la bombe a une position non visible par default
         self.x = 1000
         self.y = 1000
         self.case_x = 255
         self.case_y = 255
         self._time_created = datetime.now()
-        # déclaration des variables de la classe
         self.niveau = niveau
         self.perso1 = perso1
         self.perso2 = perso2
@@ -161,10 +158,7 @@ class Bomb:
             self.bomb.set_colorkey((255, 255, 255))
             self.explosion = 1
 
-            # try / except vrmt hard codé à supprimer
             try:
-                # destruction des briques de tous les cotes
-                # mettre la condition dans niveau.detruire() pour simplifier
                 if self.niveau.structure[self.case_y][self.case_x + 1] == "b":
                     self.niveau.detruire(self.case_y, self.case_x + 1)
 
@@ -189,11 +183,9 @@ class Bomb:
                     #return 1
 
             except IndexError:
-                # au cas ou la bombe est / detruit un bloc en dehors du terrain
                 pass
 
         if timedelta(milliseconds=3500) <= datetime.now() - self._time_created:
-            # place la bombe a une position non visible apres l'explosion
             self.x = 1000
             self.y = 1000
             self.case_x = 255
@@ -202,25 +194,20 @@ class Bomb:
 
 
 class Bomb2:
-    """Classe controllant la bombe du perso2"""
 
     def __init__(self, bomb, niveau, perso1, perso2):
-        # chargement des sprites
         self.bomb = pygame.image.load(bomb).convert()
-        # place la bombe a une position non visible par default
         self.x = 1000
         self.y = 1000
         self.case_x = 255
         self.case_y = 255
         self._time_created = datetime.now()
-        # déclaration des variables de la classe
         self.niveau = niveau
         self.perso1 = perso1
         self.perso2 = perso2
         self.explosion = 0
 
     def poser(self, x, y, bomb):
-        """pose et arme la bombe"""
         self.bomb = pygame.image.load(bomb).convert()
         self.bomb.set_colorkey((255, 255, 255))
         self.x = x
@@ -231,16 +218,13 @@ class Bomb2:
         self.explosion = 0
 
     def exploser(self):
-        """Explosion de la bombe"""
 
         if timedelta(seconds=3) <= datetime.now() - self._time_created:
             self.bomb = pygame.image.load(image_explosion).convert()
             self.bomb.set_colorkey((255, 255, 255))
             self.explosion = 1
 
-            # try / except vrmt hard codé à supprimer
             try:
-                # destruction des briques de tous les cotes
                 if self.niveau.structure[self.case_y][self.case_x + 1] == "b":
                     self.niveau.detruire(self.case_y, self.case_x + 1)
 
@@ -253,21 +237,19 @@ class Bomb2:
                 if self.niveau.structure[self.case_y + 1][self.case_x] == "b":
                     self.niveau.detruire(self.case_y + 1, self.case_x)
 
-                # conditions de victoire (a simplifier)
-                if self.case_x == self.perso1.case_x and self.case_y - 1 <= self.perso1.case_y <= self.case_y + 1:
-                    return 1
-                elif self.case_x - 1 <= self.perso1.case_x <= self.case_x + 1 and self.case_y == self.perso1.case_y:
-                    return 1
+                #if self.case_x == self.perso1.case_x and self.case_y - 1 <= self.perso1.case_y <= self.case_y + 1:
+                 #   return 1
+                #elif self.case_x - 1 <= self.perso1.case_x <= self.case_x + 1 and self.case_y == self.perso1.case_y:
+                 #   return 1
 
-                if self.case_x == self.perso2.case_x and self.case_y - 1 <= self.perso2.case_y <= self.case_y + 1:
-                    return 1
-                elif self.case_x - 1 <= self.perso2.case_x <= self.case_x + 1 and self.case_y == self.perso2.case_y:
-                    return 1
+                #if self.case_x == self.perso2.case_x and self.case_y - 1 <= self.perso2.case_y <= self.case_y + 1:
+                 #   return 1
+                #elif self.case_x - 1 <= self.perso2.case_x <= self.case_x + 1 and self.case_y == self.perso2.case_y:
+                 #   return 1
             except IndexError:
                 pass
 
         if timedelta(milliseconds=3500) <= datetime.now() - self._time_created:
-            # place la bombe a une position non visible
             self.x = 1000
             self.y = 1000
             self.case_x = 255
@@ -277,7 +259,6 @@ class Bomb2:
 
 class Flammes:
     def __init__(self, fflamme_d, fflamme_g, fflamme_h, fflamme_b):
-        # chargement des sprites de flammes
         self.fflamme_d = pygame.image.load(fflamme_d).convert()
         self.fflamme_d.set_colorkey((255, 255, 255))
         self.fflamme_g = pygame.image.load(fflamme_g).convert()

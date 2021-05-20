@@ -15,7 +15,7 @@ continuer = True
 
 while continuer:
 
-    accueil = pygame.image.load(image_accueil).convert()
+    accueil = pygame.image.load(imageMenu).convert()
     fenetre.blit(accueil, (0, 0))
 
     pygame.display.flip()
@@ -45,8 +45,8 @@ while continuer:
 
         perso = Perso(p1_droite, p1_gauche, p1_haut, p1_bas, niveau)
         perso2 = Perso2(p2_droite, p2_gauche, p2_haut, p2_bas, niveau)
-        bombe = Bomb(image_bombe, niveau, perso, perso2)
-        bombe2 = Bomb(image_bombe, niveau, perso, perso2)
+        bombe = Bomb(imageBombe, niveau, perso, perso2)
+        bombe2 = Bomb(imageBombe, niveau, perso, perso2)
         flamme = Flammes(flamme_d, flamme_g, flamme_h, flamme_b)
 
     while continuer_jeu:
@@ -63,7 +63,7 @@ while continuer:
                 if event.key == K_ESCAPE:
                     continuer_jeu = 0
                 if event.key == K_SPACE:
-                    bombe.poser(perso.x, perso.y, image_bombe)
+                    bombe.poser(perso.x, perso.y, imageBombe)
                 elif event.key == K_RIGHT:
                     pressedRight1 = True
                 elif event.key == K_LEFT:
@@ -75,7 +75,7 @@ while continuer:
 
 
                 if event.key == K_e:
-                    bombe2.poser(perso2.x, perso2.y, image_bombe)
+                    bombe2.poser(perso2.x, perso2.y, imageBombe)
                 elif event.key == K_d:
                     pressedRight2 = True
                 elif event.key == K_q:

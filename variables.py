@@ -4,12 +4,12 @@ cote_fenetre = nombre_sprite_cote * taille_sprite
 
 titre_fenetre = "Bomberman"
 
-image_accueil = "images/ap.png"
+imageMenu = "images/ap.png"
 
 image_brick = "images/brick.png"
-image_fond = "images/ap.png"
-image_pillier = "images/pillar.png"
-image_bombe = "images/bonb.png"
+
+pilier = "images/pillar.png"
+imageBombe = "images/bonb.png"
 image_sol = "images/sol.png"
 image_explosion = "images/explodstart.png"
 
