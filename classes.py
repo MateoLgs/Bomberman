@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 
 
 class Niveau:
-    """class de l'ffichage du terrain"""
+    """class de l'affichage du terrain"""
     def __init__(self, fichier):
         """initialisation des variables de la class"""
         self.fichier = fichier
