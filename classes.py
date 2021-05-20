@@ -5,14 +5,14 @@ from datetime import datetime, timedelta
 
 
 class Niveau:
-    """class de l'affichage du terrain"""
+
     def __init__(self, fichier):
-        """initialisation des variables de la class"""
+
         self.fichier = fichier
         self.structure = [[]]
 
     def generer(self):
-        """lecture du fichier du niveau"""
+
         with open(self.fichier, "r") as fichier:
             structure_niveau = []
             for ligne in fichier:
@@ -24,7 +24,7 @@ class Niveau:
             self.structure = structure_niveau
 
     def afficher(self, fenetre):
-        """définition des images du niveau"""
+
         brick = pygame.image.load(image_brick)
         pillar = pygame.image.load(image_pillier)
         sol = pygame.image.load(image_sol)
@@ -47,12 +47,12 @@ class Niveau:
             num_ligne += 1
 
     def detruire(self, case_x, case_y):
-        """destruction d'un bloc du terrain"""
+
         self.structure[int(case_x)][int(case_y)] = "s"
 
 
 class Perso:
-    """Classe permettant de créer un personage"""
+
 
     def __init__(self, droite, gauche, haut, bas, niveau, hp):
         # initialisation des images et gestion de la transparance
@@ -81,7 +81,7 @@ class Perso:
             return True
 
     def deplacer(self, direction):
-        """Methode de déplacement du personnage"""
+
 
         if direction == "droite":
             # dépassement de l'écran ?
@@ -118,7 +118,7 @@ class Perso:
 
 
 class Perso2:
-    """Classe permettant de créer le second perso à simplifier pour en utiliser qu'une"""
+
 
     def __init__(self, droite, gauche, haut, bas, niveau, hp):
         # initialisation des images et gestion de la transparance
@@ -147,7 +147,7 @@ class Perso2:
             return True
 
     def deplacer(self, direction):
-        """Methode de déplacement du personnage"""
+
 
         if direction == "droite":
             # dépassement de l'écran ?
@@ -184,7 +184,7 @@ class Perso2:
 
 
 class Bomb:
-    """Classe controllant la bombe"""
+
 
     def __init__(self, bomb, niveau, perso1, perso2):
         # chargement des sprites
@@ -202,7 +202,7 @@ class Bomb:
         self.explosion = 0
 
     def poser(self, x, y, bomb):
-        """pose et arme la bombe"""
+
         self.bomb = pygame.image.load(bomb).convert()
         self.bomb.set_colorkey((255, 255, 255))
         self.x = x
@@ -213,7 +213,7 @@ class Bomb:
         self.explosion = 0
 
     def exploser(self):
-        """Explosion de la bombe"""
+
 
         # condition explosion de la bombe 3 seconde apres
         if timedelta(seconds=3) <= datetime.now() - self._time_created:
@@ -263,7 +263,7 @@ class Bomb:
 
 
 class Bomb2:
-    """Classe controllant la bombe du perso2"""
+
 
     def __init__(self, bomb, niveau, perso1, perso2):
         # chargement des sprites
@@ -281,7 +281,7 @@ class Bomb2:
         self.explosion = 0
 
     def poser(self, x, y, bomb):
-        """pose et arme la bombe"""
+
         self.bomb = pygame.image.load(bomb).convert()
         self.bomb.set_colorkey((255, 255, 255))
         self.x = x
@@ -292,7 +292,7 @@ class Bomb2:
         self.explosion = 0
 
     def exploser(self):
-        """Explosion de la bombe"""
+
 
         if timedelta(seconds=3) <= datetime.now() - self._time_created:
             self.bomb = pygame.image.load(image_explosion).convert()

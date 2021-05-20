@@ -1,4 +1,4 @@
-"""Constantes du jeu"""
+
 
 nombre_sprite_cote = 16
 taille_sprite = 50  # en px (carré)
